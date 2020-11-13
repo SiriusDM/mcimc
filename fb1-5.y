@@ -7,7 +7,7 @@
 /* Declare Token*/
 
 %token NUMBER
-%token ADD SUB MUL DIV ABS
+%token ADD SUB MUL DIV ABS OP CP
 %token EOL
 
 %%
@@ -25,6 +25,7 @@ factor: term {$$ = $1; }
     ;
 term: NUMBER {$$ = $1; }
     | ABS term { $$ = $2 >=0? $2 : - $2; }
+    | OP exp CP { $$ = $2; }
     ;
 %%
 main(int argc, char **argv) {
